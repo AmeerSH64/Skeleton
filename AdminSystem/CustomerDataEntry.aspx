@@ -9,7 +9,31 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Label ID="lblCustomerNo" runat="server" Text="Customer Number"></asp:Label>
+            <asp:TextBox ID="txtCustomerNo" runat="server"></asp:TextBox>
         </div>
+        <p>
+            <asp:Label ID="lblCustomerName" runat="server" Text="Customer Name" width="113px"></asp:Label>
+            <asp:TextBox ID="txtCustomerName" runat="server" style="margin-top: 0px"></asp:TextBox>
+        </p>
+        <asp:Label ID="lblCustomerAddress" runat="server" Text="Address" width="113px"></asp:Label>
+        <asp:TextBox ID="txtCustomerAddress" runat="server"></asp:TextBox>
+&nbsp;<p>
+            <asp:Label ID="lblDOB" runat="server" Text="Date Of Birth" width="113px"></asp:Label>
+            <asp:TextBox ID="txtCustomerDOB" runat="server"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="lblTotalPrice" runat="server" Text="Total Price" width="113px"></asp:Label>
+            <asp:TextBox ID="txtCustomerTotalPrice" runat="server"></asp:TextBox>
+        </p>
+        <asp:CheckBox ID="chkOver18" runat="server" Text="Over 18?" />
+        <p>
+            <asp:Label ID="lblError" runat="server"></asp:Label>
+        </p>
+        <p>
+            <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" Text="OK" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+        </p>
     </form>
 </body>
 </html>
