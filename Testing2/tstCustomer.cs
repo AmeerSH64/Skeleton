@@ -14,7 +14,7 @@ namespace Testing2
             clsCustomer ACustomer = new clsCustomer();
             //test to see that it exists
             Assert.IsNotNull(ACustomer);
-           
+
         }
 
         [TestMethod]
@@ -110,7 +110,164 @@ namespace Testing2
             Assert.AreEqual(ACustomer.Over18, TestData);
         }
 
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //ceate an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //Boolean variable to store the result of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 CustomerNo = 21;
+            //invoke the method
+            Found = ACustomer.Find(CustomerNo);
+            //test to see if the result is true
+            Assert.IsTrue(Found);
+        }
 
+        [TestMethod]
+        public void TestCustomerNoFound()
+        {
+            // create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //boolean variable to store the result of the seaarch 
+            Boolean Found = false;
+            //boollean variable to record if data IS OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerNo = 21;
+            //invoke the method
+            Found = ACustomer.Find(CustomerNo);
+            //check the address no
+            if (ACustomer.CustomerNo != 21)
+            {
+                OK = false;
+
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestDateOfBirth()
+        {
+            // create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //boolean variable to store the result of the seaarch 
+            Boolean Found = false;
+            //boollean variable to record if data IS OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerNo = 21;
+            //invoke the method
+            Found = ACustomer.Find(CustomerNo);
+            //check the date of birth
+            if (ACustomer.DateOfBirth != Convert.ToDateTime("16/09/2015"))
+            {
+                OK = false;
+
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestCustomerName()
+        {
+            // create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //boolean variable to store the result of the seaarch 
+            Boolean Found = false;
+            //boollean variable to record if data IS OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerNo = 21;
+            //invoke the method
+            Found = ACustomer.Find(CustomerNo);
+            //check the address no
+            if (ACustomer.CustomerName != "Test Customer Name")
+            {
+                OK = false;
+
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+
+
+
+        }
+
+        [TestMethod]
+        public void TestAddress()
+        {
+            // create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //boolean variable to store the result of the seaarch 
+            Boolean Found = false;
+            //boollean variable to record if data IS OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerNo = 21;
+            //invoke the method
+            Found = ACustomer.Find(CustomerNo);
+            //check the address no
+            if (ACustomer.Address != "Test Address")
+            {
+                OK = false;
+
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestTotalPrice()
+        {
+            // create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //boolean variable to store the result of the seaarch 
+            Boolean Found = false;
+            //boollean variable to record if data IS OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerNo = 21;
+            //invoke the method
+            Found = ACustomer.Find(CustomerNo);
+            //check the address no
+            if (ACustomer.TotalPrice != 100)
+            {
+                OK = false;
+
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestOver18()
+        {
+            // create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //boolean variable to store the result of the seaarch 
+            Boolean Found = false;
+            //boollean variable to record if data IS OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerNo = 21;
+            //invoke the method
+            Found = ACustomer.Find(CustomerNo);
+            //check the address no
+            if (ACustomer.Over18 != true)
+            {
+                OK = false;
+
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+
+        }
 
 
     }
