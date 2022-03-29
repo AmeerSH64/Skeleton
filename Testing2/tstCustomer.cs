@@ -118,7 +118,7 @@ namespace Testing2
             //Boolean variable to store the result of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 1;
             //invoke the method
             Found = ACustomer.Find(CustomerNo);
             //test to see if the result is true
@@ -132,7 +132,7 @@ namespace Testing2
             clsCustomer ACustomer = new clsCustomer();
             //boolean variable to store the result of the seaarch 
             Boolean Found = false;
-            //boollean variable to record if data IS OK (assume it is)
+            //boolean variable to record if data IS OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
             Int32 CustomerNo = 21;
@@ -267,6 +267,28 @@ namespace Testing2
             //test to see that the result is correct
             Assert.IsTrue(OK);
 
+        }
+
+        [TestMethod]
+        public void TestActiveFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerNo = 21;
+            //invoke the method
+            Found = ACustomer.Find(CustomerNo);
+            //check the property
+            if (ACustomer.Active != true)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
         }
 
 

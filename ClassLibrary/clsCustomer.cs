@@ -1,46 +1,34 @@
 ﻿using System;
 
+
+
 namespace ClassLibrary
 {
     public class clsCustomer
     {
-        public bool Active { get; set; }
-        //public DateTime DateOfBirth { get; set; }
-        //public int CustomerNo { get; set; }
-        //public string CustomerName { get; set; }
-        //public string Address { get; set; }
-        //public decimal TotalPrice { get; set; }
-        //public bool Over18 { get; set; }
+        //private data member for active
+        private Boolean mActive;
 
-        public bool Find(int customerNo)
+        //Public property for active
+        public bool Active
         {
-            //set the private data members to the test data value
-            mCustomerNo = 21;
-            mDateOfBirth = Convert.ToDateTime("16/09/2015");
-            mCustomerName = "Test Customer Name";
-            mAddress = "Test Address";
-            mTotalPrice = 100;
-            mOver18 = true;
-
-            //always return true
-            return true;
+            get
+            {
+                //return the private data
+                return mActive;
+            }
+            set
+            {
+                //set te private data
+                mActive = value;
+            }
         }
+
 
         //private data member for the customer no property
         private Int32 mCustomerNo;
 
-        //dateOfBirth private number variable
-        private DateTime mDateOfBirth;
-        
-        private string mCustomerName;
-
-        private string mAddress;
-
-        private decimal mTotalPrice;
-
-        private Boolean mOver18;
-
-        //addressNo public property
+        //public property for the address number
         public Int32 CustomerNo
         {
             get
@@ -55,65 +43,110 @@ namespace ClassLibrary
             }
         }
 
-        //DateOfBirth public property
+
+        //private date added data member
+        private DateTime mDateOfBirth;
+
+        //public property for date added
         public DateTime DateOfBirth
         {
             get
             {
+                //return the private data
                 return mDateOfBirth;
             }
             set
             {
+                //set the private data
                 mDateOfBirth = value;
             }
         }
 
+
+        //private property for customer name
+        private string mCustomerName;        
+        //public property for customer name
         public string CustomerName
         {
             get
             {
+                //return the private data
                 return mCustomerName;
             }
             set
             {
+                //set the private data
                 mCustomerName = value;
             }
         }
 
+
+        //private property for address 
+        private string mAddress;
+        //public property for the address
         public string Address
         {
             get
             {
+                //return the private data
                 return mAddress;
             }
             set
             {
+                //set the private data
                 mAddress = value;
             }
         }
 
+
+        //private property for the total price
+        private decimal mTotalPrice;
+        //public property for the total price
         public decimal TotalPrice
         {
             get
             {
+                //return the private data
                 return mTotalPrice;
             }
             set
             {
+                //set the private data
                 mTotalPrice = value;
             }
         }
 
+
+        //private property for over 18
+        private Boolean mOver18;
+        //public property for over 18
         public Boolean Over18
         {
             get
             {
+                //return the private data
                 return mOver18;
             }
             set
             {
+                //set the private data
                 mOver18 = value;
             }
+        }
+        
+        public bool Find(int CustomerNo)
+        {
+            //set the private data members to the test data value
+            mActive = true;
+            mCustomerNo = 21;
+            mDateOfBirth = Convert.ToDateTime("16/09/2015");
+            mCustomerName = "Test Customer Name";
+            mAddress = "Test Address";
+            mTotalPrice = 100;
+            mOver18 = true;
+
+            //always return true
+            return true;
         }
     }
 } 
