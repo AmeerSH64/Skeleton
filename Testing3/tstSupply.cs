@@ -99,13 +99,13 @@ namespace Testing3
         {
             //Create an instance of the supplier class.
             clsSupply Supplier = new clsSupply();
-            //Create Boolean to store results.
+            //Boolean value for the validation results.
             Boolean Found = false;
             //Create test data.
             Int32 SupplierNo = 2;
             //Invoke the method.
             Found = Supplier.Find(SupplierNo);
-            //Test to see if it is true.
+            //Test to see if the result is true.
             Assert.IsTrue(Found);
         }
 
@@ -114,9 +114,9 @@ namespace Testing3
         {
             //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
-            //Create Boolean to show results.
+            //Boolean value for the validation results.
             Boolean Found = false;
-            //Create Boolean to show data is ok.
+            //Boolean to show whether data is OK.
             Boolean OK = true;
             //Create test data.
             Int32 SupplierNo = 2;
@@ -126,7 +126,7 @@ namespace Testing3
             {
                 OK = false;
             }
-            //Test to see the result.
+            //Test to see if the result is true.
             Assert.IsTrue(OK);
         }
 
@@ -135,9 +135,9 @@ namespace Testing3
         {
             //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
-            //Create Boolean to show results.
+            //Boolean value for the validation results.
             Boolean Found = false;
-            //Create boolean to show data is ok.
+            //Boolean to show whether data is OK.
             Boolean OK = true;
             //Create test data.
             Int32 SupplierNo = 2;
@@ -147,10 +147,31 @@ namespace Testing3
             {
                 OK = false;
             }
-            //Check the results.
+            //Test to see if the result is true.
             Assert.IsTrue(OK);
         }
 
+        [TestMethod]
+        public void TestIsAvailableFound()
+        {
+            //Create an instance of the supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Boolean value for the validation results.
+            Boolean Found = false;
+            //Boolean to show whether data is OK.
+            Boolean OK = true;
+            //Create test data.
+            Int32 SupplierNo = 2;
+            //Invoke the method.
+            Found = Supplier.Find(SupplierNo);
+            if (Supplier.IsAvailable != true)
+            {
+                OK = false;
+            }
+            //Test to see if the result is true.
+            Assert.IsTrue(OK);
+        }
+      
         [TestMethod]
         public void TestProductNameFound()
         {
@@ -158,7 +179,7 @@ namespace Testing3
             clsSupply Supplier = new clsSupply();
             //Create Boolean to show results.
             Boolean Found = false;
-            //Create boolean to show data is ok.
+            //Create boolean to show data is OK.
             Boolean OK = true;
             //Create test data.
             Int32 SupplierNo = 2;
@@ -168,7 +189,7 @@ namespace Testing3
             {
                 OK = false;
             }
-            //Check the results.
+            //Test to see if the result is true.
             Assert.IsTrue(OK);
         }
 
@@ -194,34 +215,13 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void TestIsAvailableFound()
-        {
-            //Create an instance of the Supplier class.
-            clsSupply Supplier = new clsSupply();
-            //Create Boolean to show results.
-            Boolean Found = false;
-            //Create boolean to show data is ok.
-            Boolean OK = true;
-            //Create test data.
-            Int32 SupplierNo = 2;
-            //Invoke the method.
-            Found = Supplier.Find(SupplierNo);
-            if (Supplier.IsAvailable != true)
-            {
-                OK = false;
-            }
-            //Check the results.
-            Assert.IsTrue(OK);
-        }
-
-        [TestMethod]
         public void TestDateAvailableFound()
         {
             //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
-            //Create Boolean to show results.
+            //Boolean value for the validation results.
             Boolean Found = false;
-            //Create boolean to show data is ok.
+            //Boolean to show whether data is OK.
             Boolean OK = true;
             //Create test data.
             Int32 SupplierNo = 2;
@@ -231,7 +231,7 @@ namespace Testing3
             {
                 OK = false;
             }
-            //Check the results.
+            //Test to see if the result is true.
             Assert.IsTrue(OK);
         }
     }
