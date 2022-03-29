@@ -37,7 +37,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         AOrder.ConfirmOrder = Convert.ToBoolean(chkConfirmOrder.Checked);
 
         //capture the Order Date
-        AOrder.OrderDate = Convert.ToDateTime(txtOrderDate.Text);
+        AOrder.DateAdded = Convert.ToDateTime(txtOrderDate.Text);
         
         //navigate to the viewer page
         Response.Redirect("OrderViewer.aspx");
