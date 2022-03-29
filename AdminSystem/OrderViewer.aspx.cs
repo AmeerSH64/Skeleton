@@ -25,7 +25,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //display the Customer Name for this entry
         Response.Write(AnOrder.CustomerName);
         //display the Order Date for this entry
-        Response.Write(AnOrder.OrderDate);
+        Response.Write(AnOrder.DateAdded);
 
 
     }
