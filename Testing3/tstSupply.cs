@@ -192,5 +192,26 @@ namespace Testing3
             //Test to see if the result is true.
             Assert.IsTrue(OK);
         }
+
+        [TestMethod]
+        public void TestDateAvailableFound()
+        {
+            //Create an instance of the supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Boolean value for the validation results.
+            Boolean Found = false;
+            //Boolean to show whether data is OK.
+            Boolean OK = true;
+            //Create test data.
+            Int32 SupplierNo = 2;
+            //Invoke the method.
+            Found = Supplier.Find(SupplierNo);
+            if (Supplier.DateAvailable != Convert.ToDateTime("10/02/2022"))
+            {
+                OK = false;
+            }
+            //Test to see if the result is true.
+            Assert.IsTrue(OK);
+        }
     }
 }
