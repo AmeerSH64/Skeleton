@@ -2,11 +2,20 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Testing1
+namespace Test_Framework
 {
     [TestClass]
     public class tstOrder
     {
+        //good test data
+        //create some tes data to pass to the method
+        string TrackingNumber = "317691783";
+        string ProductName = "HP Pavilion Power";
+        string Price = "500";
+        string CustomerName = "Akash Vinodrai";
+        string DateAdded = DateTime.Now.Date.ToString();
+        
+
         [TestMethod]
         public void InstanceOk()
         {
@@ -280,6 +289,162 @@ namespace Testing1
             //test to see that the result is correct
             Assert.IsTrue(OK);
 
+        }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store my error message
+            String Error = "";
+            //invoke the method
+            Error = AnOrder.Valid(TrackingNumber,ProductName,Price,CustomerName,DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TrackingNumberMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string varaible to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string TrackingNumber = ""; //this should trigger an error
+            //invoke the method
+            Error = AnOrder.Valid(TrackingNumber, ProductName, Price, CustomerName, DateAdded);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TrackingNumberMin()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string TrackingNumber = "a"; //this should be ok
+            //invoke the method
+            Error = AnOrder.Valid(TrackingNumber, ProductName, Price, CustomerName, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TrackingNumberMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string TrackingNumber = "aa"; // this should be ok
+            //invoke the method
+            Error = AnOrder.Valid(TrackingNumber, ProductName, Price, CustomerName, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TrackingNumberMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass any error message
+            string TrackingNumber = "aaaa"; //this should be ok
+            //invoke the method
+            Error = AnOrder.Valid(TrackingNumber, ProductName, Price, CustomerName, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TrackingNumberMax()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string varaible to store any error message
+            String Error = "";
+            //create some test data to pass to the message
+            string TrackingNumber = "aaaaa"; //this should be ok
+            //invoke the method
+            Error = AnOrder.Valid(TrackingNumber, ProductName, Price, CustomerName, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TrackingNumberMid()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string TrackingNumber = "aaa"; //this should be ok
+            //invoke the method
+            Error = AnOrder.Valid(TrackingNumber, ProductName, Price, CustomerName, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TrackingNumberMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string TrackingNumber = "";
+            TrackingNumber = TrackingNumber.PadRight (32, 'a'); //this should fail
+            //invoke the method
+            Error = AnOrder.Valid(TrackingNumber, ProductName, Price, CustomerName, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TrackingNumberExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string TrackingNumber = "";
+            TrackingNumber = TrackingNumber.PadRight(500, 'a'); //this should fail
+            //invoke the method
+            Error = AnOrder.Valid(TrackingNumber, ProductName, Price, CustomerName, DateAdded);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever that date is less 100 years
+            TestDate = TestDate.AddYears(-100);
+            //convert the date variable to a string variable
+            string DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = AnOrder.Valid(TrackingNumber, ProductName, Price, CustomerName, DateAdded);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
         }
     }
 }

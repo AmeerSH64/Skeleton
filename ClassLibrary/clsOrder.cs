@@ -4,7 +4,7 @@ namespace ClassLibrary
 {
     public class clsOrder
     {
-        
+
         //DateAdded private member 
         private DateTime mDateAdded;
         //DateAdded public property
@@ -19,7 +19,7 @@ namespace ClassLibrary
                 mDateAdded = value;
             }
         }
-        
+
         //ordernumber private member variable
         private Int32 mOrderNumber;
         //OrderNumber public property
@@ -104,7 +104,7 @@ namespace ClassLibrary
                 mCustomerName = value;
             }
         }
-        
+
         //priavte data member for ConfirmOrder
         private Boolean mConfirmOrder;
         //public property for ConfirmOrder
@@ -150,6 +150,35 @@ namespace ClassLibrary
                 //return false indicating a problem
                 return false;
             }
+        }
+
+        public string Valid(string TrackingNumber, string ProductName, string Price, string CustomerName, string DateAdded)
+        {
+            //create a string variable to store tthe error
+            String Error = "";
+            //create a temporary variable to store data values
+            DateTime DateTemp;
+            //if the TrackingNumber is blank
+            if (TrackingNumber.Length == 0)
+            {
+                //record the error
+                Error = Error + "The tracking number way not be blank : ";
+            }
+            //if the tracking number is greater than 6 characters
+            if (TrackingNumber.Length > 32)
+            {
+                //record the error
+                Error = Error = "The Tracking Number must be less than 32 characters ; ";
+            }
+            //copy the DateAdded value to the DateTemp varaible
+            DateTemp = Convert.ToDateTime(DateAdded);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                //record the error
+                Error = Error + "The date cannot be in the past : ";
+            }
+            //return any error messages
+            return Error;
         }
     }
 }
