@@ -1,29 +1,9 @@
 ﻿using System;
 
-
-
 namespace ClassLibrary
 {
     public class clsCustomer
     {
-        //private data member for active
-        private Boolean mActive;
-
-        //Public property for active
-        public bool Active
-        {
-            get
-            {
-                //return the private data
-                return mActive;
-            }
-            set
-            {
-                //set te private data
-                mActive = value;
-            }
-        }
-
 
         //private data member for the customer no property
         private Int32 mCustomerNo;
@@ -136,17 +116,36 @@ namespace ClassLibrary
         
         public bool Find(int CustomerNo)
         {
-            //set the private data members to the test data value
-            mActive = true;
-            mCustomerNo = 21;
-            mDateOfBirth = Convert.ToDateTime("16/09/2015");
-            mCustomerName = "Test Customer Name";
-            mAddress = "Test Address";
-            mTotalPrice = 100;
-            mOver18 = true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the address to the search for
+            DB.AddParameter("@CustomerNo", CustomerNo);
+            //execute the stored procedure
+            DB.Execute("spoc_tbleCustomer_FilerByCustomerNo");
+            //if one record is found (there should be either one or zero)
+            if (DB.Count == 1)
+            {
+                //set the private data members to the test data value
+                mCustomerNo = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerNo"]);
+                mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
+                mCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
+                mAddress = Convert.ToString(DB.DataTable.Rows[0]["Address"]);
+                mTotalPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["TotalPrice"]);
+                mOver18 = Convert.ToBoolean(DB.DataTable.Rows[0]["Over18"]);
 
-            //always return true
-            return true;
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was found
+            else
+            {
+                //return false indicating a problem
+                return false;
+            }
+
+            
+
+            
         }
     }
 } 
