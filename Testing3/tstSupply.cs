@@ -7,6 +7,13 @@ namespace Testing3
     [TestClass]
     public class tstSupply
     {
+        //Good test data.
+        //Create test data to pass the method.
+        string SupplierName = "Apple";
+        string ProductName = "MacBook";
+        string ProductPrice = "1000";
+        string DateAvailable = DateTime.Now.Date.ToString();
+        
         [TestMethod]
         public void InstanceOK()
         {
@@ -233,6 +240,94 @@ namespace Testing3
             }
             //Test to see if the result is true.
             Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void SupplierNameMinLessOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String SupplierName = "";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void SupplierNameMin()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String SupplierName = "a";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void SupplierNameMinPlusOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String SupplierName = "aa";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void SupplierNameMaxLessOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String SupplierName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void SupplierNameMax()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String SupplierName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
         }
     }
 }

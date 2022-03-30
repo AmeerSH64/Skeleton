@@ -116,5 +116,21 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string supplierName, string productName, string productPrice, string dateAvailable)
+        {
+            //This method accepts four strings for validation.
+            //The function returns a string containing an error message.
+            //If there are no errors, a blank string is returned.
+            //Create the error message.
+            String error = "";
+            //If the Supplier name is null.
+            if (supplierName.Length == 0)
+            {
+                error = error + "The supplier name field is empty";
+            }
+            //Return any error messages.
+            return error;
+        }
     }
 }
