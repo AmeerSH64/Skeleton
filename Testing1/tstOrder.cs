@@ -162,7 +162,7 @@ namespace Testing1
             //invoke the method
             Found = AnOrder.Find(OrderNumber);
             //check the property
-            if (AnOrder.DateAdded != Convert.ToDateTime("2019-02-21"))
+            if (AnOrder.DateAdded != Convert.ToDateTime("2019-02-01"))
             {
                 OK = false;
             }
@@ -202,7 +202,7 @@ namespace Testing1
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNumber = 317691783;
+            Int32 OrderNumber = 1;
             //invoke the method
             Found = AnOrder.Find(OrderNumber);
             //check the order
@@ -224,7 +224,7 @@ namespace Testing1
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNumber = 317691783;
+            Int32 OrderNumber = 1;
             //invoke the method
             Found = AnOrder.Find(OrderNumber);
             //check the order
@@ -247,7 +247,7 @@ namespace Testing1
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNumber = 317691783;
+            Int32 OrderNumber = 1;
             //invoke the method
             Found = AnOrder.Find(OrderNumber);
             //check the order
@@ -269,7 +269,7 @@ namespace Testing1
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNumber = 317691783;
+            Int32 OrderNumber = 1;
             //invoke the method
             Found = AnOrder.Find(OrderNumber);
             //check the order
