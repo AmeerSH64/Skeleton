@@ -26,4 +26,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //Navigate to the viewer page.
         Response.Redirect("SupplyViewer.aspx");
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //Create an instance of the Supplier class.
+        clsSupply Supplier = new clsSupply();
+        //Create a variable to store the primary key.
+        Int32 SupplierNo;
+        //Create a Boolean to store the results.
+        Boolean Found = false;
+        //Get a primary key from the user.
+        SupplierNo = Convert.ToInt32(txtSupplierNo.Text);
+        //Find the record.
+        Found = Supplier.Find(SupplierNo);
+        //if found.
+        if (Found == true)
+        {
+            //Display the properties in the form.
+            txtSupplierName.Text = Supplier.SupplierName;
+            txtProductName.Text = Supplier.ProductName;
+            txtProductPrice.Text = Supplier.ProductPrice.ToString();
+            txtDateAvailable.Text = Supplier.DateAvailable.ToString();
+        }
+    }
 }
