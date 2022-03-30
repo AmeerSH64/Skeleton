@@ -10,6 +10,7 @@
     <form runat="server">
         <asp:Label ID="lblOrderNumber" runat="server" Text="OrderNumber" width="138px"></asp:Label>
         <asp:TextBox ID="txtOrderNumber" runat="server"></asp:TextBox>
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
         <br />
         <asp:Label ID="lblTrackingNumber" runat="server" Text="Tracking Number"></asp:Label>
         <asp:TextBox ID="txtTrackingNumber" runat="server"></asp:TextBox>
@@ -23,8 +24,8 @@
         <asp:Label ID="lblCustomerName" runat="server" Text="Customer Name" width="138px"></asp:Label>
         <asp:TextBox ID="txtCustomerName" runat="server"></asp:TextBox>
         <br />
-        <asp:Label ID="lblOrderDate" runat="server" Text="Order Date" width="138px"></asp:Label>
-        <asp:TextBox ID="txtOrderDate" runat="server"></asp:TextBox>
+        <asp:Label ID="lblDateAdded" runat="server" Text="Date Added" width="138px"></asp:Label>
+        <asp:TextBox ID="txtDateAdded" runat="server"></asp:TextBox>
         <br />
         <asp:CheckBox ID="chkConfirmOrder" runat="server" Text="Confirm Order" />
         <br />
