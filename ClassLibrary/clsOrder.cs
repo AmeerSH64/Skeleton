@@ -137,7 +137,7 @@ namespace ClassLibrary
                 mOrderNumber = Convert.ToInt32(DB.DataTable.Rows[0]["OrderNumber"]);
                 mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
                 mConfirmOrder = Convert.ToBoolean(DB.DataTable.Rows[0]["ConfirmOrder"]);
-                mTrackingNumber = Convert.ToInt32(DB.DataTable.Rows[0]["Tracking Number"]);
+                mTrackingNumber = Convert.ToInt32(DB.DataTable.Rows[0]["TrackingNumber"]);
                 mProductName = Convert.ToString(DB.DataTable.Rows[0]["ProductName"]);
                 mPrice = Convert.ToInt32(DB.DataTable.Rows[0]["Price"]);
                 mCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
