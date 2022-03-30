@@ -38,6 +38,10 @@ namespace ClassLibrary
             get
             {
                 //Acquiring the data from the property.
+        public DateTime DateAvailable { 
+            get
+            {
+                //Acquiring data from the property.
                 return mDateAvailable;
             }
             set
@@ -52,6 +56,10 @@ namespace ClassLibrary
             get
             {
                 //Acquiring the data from the property.
+        public string SupplierName { 
+            get
+            {
+                //Acquiring data from the property.
                 return mSupplierName;
             }
             set
@@ -66,8 +74,6 @@ namespace ClassLibrary
             get
             {
                 //Acquiring the data from the property.
-                return mProductName;
-            }
             set
             {
                 //Changing the data of the property.
@@ -117,7 +123,6 @@ namespace ClassLibrary
                 //Return false indicating a problem.
                 return false;
             }
-            
         }
     }
 }

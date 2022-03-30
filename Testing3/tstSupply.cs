@@ -10,7 +10,7 @@ namespace Testing3
         [TestMethod]
         public void InstanceOK()
         {
-            //Create an instance of the class we want to create.
+            //Create an instance of the suplier class.
             clsSupply Supplier = new clsSupply();
             //Test to see that it exists.
             Assert.IsNotNull(Supplier);
@@ -19,7 +19,7 @@ namespace Testing3
         [TestMethod]
         public void SupplierNoPropertyOK()
         {
-            //Create an instance of the class we want to create.
+            //Create an instance of the supplier class.
             clsSupply Supplier = new clsSupply();
             //Create test data.
             Int32 testData = 2;
@@ -32,7 +32,7 @@ namespace Testing3
         [TestMethod]
         public void IsAvaiablePropertyOK()
         {
-            //Create an instance of the class we want to create.
+            //Create an instance of the suppler class.
             clsSupply Supplier = new clsSupply();
             //Create test data.
             Boolean testData = true;
@@ -171,15 +171,15 @@ namespace Testing3
             //Test to see if the result is true.
             Assert.IsTrue(OK);
         }
-
+      
         [TestMethod]
         public void TestProductNameFound()
         {
             //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
-            //Boolean value for the validation results.
+            //Create Boolean to show results.
             Boolean Found = false;
-            //Boolean to show whether data is OK.
+            //Create boolean to show data is OK.
             Boolean OK = true;
             //Create test data.
             Int32 SupplierNo = 2;
