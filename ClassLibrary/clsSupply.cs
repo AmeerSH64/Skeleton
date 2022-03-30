@@ -33,11 +33,6 @@ namespace ClassLibrary
             }
         }
         private DateTime mDateAvailable;
-        public DateTime DateAvailable
-        {
-            get
-            {
-                //Acquiring the data from the property.
         public DateTime DateAvailable { 
             get
             {
@@ -51,11 +46,6 @@ namespace ClassLibrary
             }
         }
         private string mSupplierName;
-        public string SupplierName
-        {
-            get
-            {
-                //Acquiring the data from the property.
         public string SupplierName { 
             get
             {
@@ -74,6 +64,8 @@ namespace ClassLibrary
             get
             {
                 //Acquiring the data from the property.
+                return mProductName;
+            }
             set
             {
                 //Changing the data of the property.

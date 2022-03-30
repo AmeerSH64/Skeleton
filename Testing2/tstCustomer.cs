@@ -18,20 +18,6 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void ActivePropertOK()
-        {
-            //create an instance of the class we want to create
-            clsCustomer ACustomer = new clsCustomer();
-            //create some test data
-            Boolean TestData = true;
-            //assign the data to the property
-            ACustomer.Active = TestData;
-            //test to see if the two values are the same
-            Assert.AreEqual(ACustomer.Active, TestData);
-
-        }
-
-        [TestMethod]
         public void DateOfBirthPropertyOK()
         {
             //create an instance of the class we want to create
