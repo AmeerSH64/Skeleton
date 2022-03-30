@@ -104,7 +104,7 @@ namespace Testing2
             //Boolean variable to store the result of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 CustomerNo = 1;
+            Int32 CustomerNo = 6;
             //invoke the method
             Found = ACustomer.Find(CustomerNo);
             //test to see if the result is true
