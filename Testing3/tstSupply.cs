@@ -97,7 +97,7 @@ namespace Testing3
         [TestMethod]
         public void FindMethodOK()
         {
-            //Create an instance of the supplier class.
+            //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
             //Boolean value for the validation results.
             Boolean Found = false;
@@ -154,7 +154,7 @@ namespace Testing3
         [TestMethod]
         public void TestIsAvailableFound()
         {
-            //Create an instance of the supplier class.
+            //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
             //Boolean value for the validation results.
             Boolean Found = false;
@@ -198,9 +198,9 @@ namespace Testing3
         {
             //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
-            //Create Boolean to show results.
+            //Boolean value for the validation results.
             Boolean Found = false;
-            //Create boolean to show data is ok.
+            //Boolean to show whether data is OK.
             Boolean OK = true;
             //Create test data.
             Int32 SupplierNo = 2;
@@ -210,7 +210,7 @@ namespace Testing3
             {
                 OK = false;
             }
-            //Check the results.
+            //Test to see if the result is true.
             Assert.IsTrue(OK);
         }
 
