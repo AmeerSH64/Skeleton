@@ -95,7 +95,7 @@ namespace ClassLibrary
             //Create an instance of the DataConnection class.
             clsDataConnection DB = new clsDataConnection();
             //Add the parameter to search for.
-            DB.AddParameter("@SupplierNo", SupplierNo);
+            DB.AddParameter("@SupplierNo", supplierNo);
             //Execute the stored procedure.
             DB.Execute("sproc_tblSupplier_FilterBySupplierNo");
             //If a record is found, it should be 1 or 0.

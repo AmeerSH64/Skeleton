@@ -97,7 +97,7 @@ namespace Testing3
         [TestMethod]
         public void FindMethodOK()
         {
-            //Create an instance of the supplier class.
+            //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
             //Boolean value for the validation results.
             Boolean Found = false;
@@ -112,7 +112,7 @@ namespace Testing3
         [TestMethod]
         public void TestSupplierNoFound()
         {
-            //Create an instance of the supplier class.
+            //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
             //Boolean value for the validation results.
             Boolean Found = false;
@@ -133,7 +133,7 @@ namespace Testing3
         [TestMethod]
         public void TestSupplierNameFound()
         {
-            //Create an instance of the supplier class.
+            //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
             //Boolean value for the validation results.
             Boolean Found = false;
@@ -154,7 +154,7 @@ namespace Testing3
         [TestMethod]
         public void TestIsAvailableFound()
         {
-            //Create an instance of the supplier class.
+            //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
             //Boolean value for the validation results.
             Boolean Found = false;
@@ -175,7 +175,7 @@ namespace Testing3
         [TestMethod]
         public void TestProductNameFound()
         {
-            //Create an instance of the supplier class.
+            //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
             //Boolean value for the validation results.
             Boolean Found = false;
@@ -186,6 +186,48 @@ namespace Testing3
             //Invoke the method.
             Found = Supplier.Find(SupplierNo);
             if (Supplier.ProductName != "Surface Laptop")
+            {
+                OK = false;
+            }
+            //Test to see if the result is true.
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestProductPriceFound()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Boolean value for the validation results.
+            Boolean Found = false;
+            //Boolean to show whether data is OK.
+            Boolean OK = true;
+            //Create test data.
+            Int32 SupplierNo = 2;
+            //Invoke the method.
+            Found = Supplier.Find(SupplierNo);
+            if (Supplier.ProductPrice != 900)
+            {
+                OK = false;
+            }
+            //Test to see if the result is true.
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestDateAvailableFound()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Boolean value for the validation results.
+            Boolean Found = false;
+            //Boolean to show whether data is OK.
+            Boolean OK = true;
+            //Create test data.
+            Int32 SupplierNo = 2;
+            //Invoke the method.
+            Found = Supplier.Find(SupplierNo);
+            if (Supplier.DateAvailable != Convert.ToDateTime("10/02/2022"))
             {
                 OK = false;
             }
