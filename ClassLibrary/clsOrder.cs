@@ -170,12 +170,62 @@ namespace ClassLibrary
                 //record the error
                 Error = Error = "The Tracking Number must be less than 32 characters ; ";
             }
-            //copy the DateAdded value to the DateTemp varaible
-            DateTemp = Convert.ToDateTime(DateAdded);
-            if (DateTemp < DateTime.Now.Date)
+            try
+            {
+                //copy the DateAdded value to the DateTemp
+                DateTemp = Convert.ToDateTime(DateAdded);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than todays date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
             {
                 //record the error
-                Error = Error + "The date cannot be in the past : ";
+                Error = Error + "The data was not a valid date : ";
+            }
+            if (Price.Length == 0)
+            {
+                //Record the error
+                Error = Error + "The Price may not be blank : ";
+            }
+            if (Price.Length > 9)
+            {
+                //Record Error
+                Error = Error + "The Price must be less than 9 characters : ";
+            }
+            
+            //is the Product Name blank
+            if (ProductName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Product Name may not be blank : ";
+            }
+            //if the Product Name is too long
+            if (ProductName.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Product Name must be less than 50 characters : ";
+            }
+
+            //is the Customer Name blank
+            if (CustomerName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Customer Name may not be blank : ";
+            }
+            //if the Customer Name is too long
+            if (CustomerName.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Customer Name must be less than 50 characters : ";
             }
             //return any error messages
             return Error;
