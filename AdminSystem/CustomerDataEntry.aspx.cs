@@ -17,11 +17,46 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsCustomer
         clsCustomer ACustomer = new clsCustomer();
-        //capture the customer no.
-        ACustomer.CustomerName = txtCustomerName.Text;
-        //store the customer in the session object
-        Session["ACustomer"] = ACustomer;
-        //navigate to the viewer page
-        Response.Redirect("CustomerViewer.aspx");
+
+        //capture the customer name
+        string CustomerName = txtCustomerName.Text;
+
+        //capture date of birth
+        string DataOfBirth = txtDateOfBirth.Text;
+
+        //caption address
+        string Address = txtCustomerAddress.Text;
+
+        //variable to store any error messages
+        string Error = "";
+        //validate the data
+        Error = ACustomer.Valid(CustomerName, DataOfBirth, Address);
+        if (Error == "")
+        {
+
+            //capture the customer no.
+            ACustomer.CustomerName = txtCustomerName.Text;
+
+            //caption the date of birth
+            ACustomer.DateOfBirth = Convert.ToDateTime(lblDateOfBirth);
+
+            //capture the address
+            ACustomer.Address = Address;
+
+            //store the customer in the session object
+            Session["ACustomer"] = ACustomer;
+            //redirect to the viewer page
+            Response.Write("CustomerViewer.aspx");
+
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
+
+
+
+        
     }
 }
