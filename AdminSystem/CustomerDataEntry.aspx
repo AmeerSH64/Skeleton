@@ -19,8 +19,8 @@
         <asp:Label ID="lblCustomerAddress" runat="server" Text="Address" width="113px"></asp:Label>
         <asp:TextBox ID="txtCustomerAddress" runat="server"></asp:TextBox>
 &nbsp;<p>
-            <asp:Label ID="lblDOB" runat="server" Text="Date Of Birth" width="113px"></asp:Label>
-            <asp:TextBox ID="txtCustomerDOB" runat="server"></asp:TextBox>
+            <asp:Label ID="lblDateOfBirth" runat="server" Text="Date Of Birth" width="113px"></asp:Label>
+            <asp:TextBox ID="txtDateOfBirth" runat="server"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="lblTotalPrice" runat="server" Text="Total Price" width="113px"></asp:Label>
