@@ -147,9 +147,77 @@ namespace ClassLibrary
             
         }
 
-        public string Valid(string customerName, string dateOfBirth, string address)
+        public string Valid(string CustomerName, string DateOfBirth, string Address)
         {
-            return "";
+            //create a string variable to store the error
+            String Error = "";
+            //ctreate a temporay variable to store data value
+            DateTime DateTemp;
+            //if the customer name is blank
+            if (CustomerName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Customer name may not be left blank : ";
+            }
+            //if the customer name is greater than 50 characters
+            if (CustomerName.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Customer Name must be less than 50 characters :";
+            }
+
+            try
+            {
+                //copy the DateOfBirth value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(DateOfBirth);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                     //record the error
+                     Error = Error + "The date cannot be in the past : ";
+                }
+                 //check to see if the date is greater than todays date
+                 if (DateTemp > DateTime.Now.Date)
+                 {
+                      //record the error
+                      Error = Error + "The date cannot be in the future : ";
+                 }
+
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            //is the Address blank
+            if (Address.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Address may not be blank : ";
+            }
+            //if the Address is too long
+            if (Address.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Address must be less than 50 characters : ";
+            }
+            //is the street blank
+            if (Address.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Address may not be blank : ";
+            }
+            //if the street is too long
+            if (Address.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Address must be less than 50 characters : ";
+            }
+
+
+            //return any error messages
+            return Error;
         }
+
     }
 } 
