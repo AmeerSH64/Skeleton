@@ -17,14 +17,43 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //Create an instance of clsSupply.
         clsSupply Supplier = new clsSupply();
+        //Capture the Supplier no.
+        String SupplierNo = txtSupplierNo.Text;
         //Capture the Supplier name.
-        Supplier.SupplierName = txtSupplierName.Text;
+        String SupplierName = txtSupplierName.Text;
         //Capture the Product name.
-        Supplier.ProductName = txtProductName.Text;
-        //Store the data in the session object.
-        Session["Supplier"] = Supplier;
-        //Navigate to the viewer page.
-        Response.Redirect("SupplyViewer.aspx");
+        String ProductName = txtProductName.Text;
+        //Capture the Product price.
+        String ProductPrice = txtProductPrice.Text;
+        //Capture the date available.
+        String DateAvailable = txtDateAvailable.Text;
+        //Variable for error messages.
+        String error = "";
+        //Validate the data.
+        error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+        if (error == "")
+        {
+            //Capture the Supplier no.
+            Supplier.SupplierNo = Convert.ToInt32(SupplierNo);
+            //Capture the Supplier name.
+            Supplier.SupplierName = SupplierName;
+            //Capture the Product name.
+            Supplier.ProductName = ProductName;
+            //Capture the Product price.
+            Supplier.ProductPrice = Convert.ToInt32(ProductPrice);
+            //Capture the date available.
+            Supplier.DateAvailable = Convert.ToDateTime(DateAvailable);
+            //Store the data in the session object.
+            Session["Supplier"] = Supplier;
+            //Navigate to the viewer page.
+            Response.Redirect("SupplyViewer.aspx");
+        }
+        else
+        {
+            //Display the error meesage.
+            lblError.Text = error;
+        }
+        
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
