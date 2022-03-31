@@ -94,7 +94,7 @@ namespace Testing3
             //Create an instance of the Supplier class.
             clsSupply Supplier = new clsSupply();
             //Create test data.
-            double testData = 100;
+            Int32 testData = 100;
             //Assign the data to the property.
             Supplier.ProductPrice = testData;
             //Test that the values are the same.
@@ -328,6 +328,406 @@ namespace Testing3
             error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
             //Test to see if an error occurs.
             Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void SupplierNameMaxPlusOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String SupplierName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void SupplierNameMid()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String SupplierName = "aaaaaaaaaaaaaaaaaaaaaaaaa";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void SupplierNameExtremeMax()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String SupplierName = "";
+            SupplierName = SupplierName.PadRight(500, 'a');
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void DateAvailableExtremeMin()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Assign today's date to a variable.
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            //Change the date to 100 years ago.
+            TestDate = TestDate.AddYears(-100);
+            //Convert it to a string variable.
+            String DateAvailable = Convert.ToString(TestDate);
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void DateAvailableMinLessOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Assign today's date to a variable.
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            //Change the date to 1 day ago.
+            TestDate = TestDate.AddDays(-1);
+            //Convert it to a string variable.
+            String DateAvailable = Convert.ToString(TestDate);
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void DateAvailableMin()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Assign today's date to a variable.
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            //Convert it to a string variable.
+            String DateAvailable = Convert.ToString(TestDate);
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void DateAvailableMinPlusOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Assign today's date to a variable.
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            //Change the date to tomorrow.
+            TestDate = TestDate.AddDays(1);
+            //Convert it to a string variable.
+            String DateAvailable = Convert.ToString(TestDate);
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void DateAvailableExtremeMax()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Assign today's date to a variable.
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            //Change the date to 100 years later.
+            TestDate = TestDate.AddYears(100);
+            //Convert it to a string variable.
+            String DateAvailable = Convert.ToString(TestDate);
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void InvalidDateAvailable()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create an invalid date variable.
+            String DateAvailable = "Not a date.";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductNameMinLessOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductName = "";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductNameMin()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductName = "a";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductNameMinPlusOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductName = "aa";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductNameMaxLessOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductNameMax()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductNameMaxPlusOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductNameMid()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductName = "aaaaaaaaaaaaaaaaaaaaaaaaa";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductNameExtremeMax()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductName = "";
+            SupplierName = SupplierName.PadRight(500, 'a');
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductPriceMinLessOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductPrice = "0";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductPriceMin()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductPrice = "1";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductPriceMinPlusOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductPrice = "2";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductPriceMaxLessOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductPrice = "9998";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductPriceMax()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductPrice = "9999";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductPriceMaxPlusOne()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductPrice = "10000";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ProductPriceMid()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductPrice = "5000";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void InvalidProductPrice()
+        {
+            //Create an instance of the Supplier class.
+            clsSupply Supplier = new clsSupply();
+            //Create a string to store the error message.
+            String error = "";
+            //Create test data.
+            String ProductPrice = "Not a number";
+            //Invoke the method.
+            error = Supplier.Valid(SupplierName, ProductName, ProductPrice, DateAvailable);
+            //Test to see if an error occurs.
+            Assert.AreNotEqual(error, "");
         }
     }
 }
