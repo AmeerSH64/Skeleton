@@ -42,19 +42,6 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void CountPropertyOK()
-        {
-            //Create an instance of the Supplier collection class.
-            clsSupplyCollection AllSuppliers = new clsSupplyCollection();
-            //Create test data.
-            Int32 SomeCount = 0;
-            //Assign the data to the property.
-            AllSuppliers.Count = SomeCount;
-            //Test to see if the values match.
-            Assert.AreEqual(AllSuppliers.Count, SomeCount);
-        }
-
-        [TestMethod]
         public void ThisSupplierPropertyOK()
         {
             //Create an instance of the Supplier collection class.
@@ -72,6 +59,30 @@ namespace Testing3
             AllSuppliers.ThisSupplier = TestSupplier;
             //Test to see if the values match.
             Assert.AreEqual(AllSuppliers.ThisSupplier, TestSupplier);
+        }
+
+        [TestMethod]
+        public void ListAndCountOK()
+        {
+            //Create an instance of the Supplier collection class.
+            clsSupplyCollection AllSuppliers = new clsSupplyCollection();
+            //Create a list for test data.
+            List<clsSupply> TestList = new List<clsSupply>();
+            //Create and add an item to the list.
+            clsSupply TestItem = new clsSupply();
+            //Set its properties.
+            TestItem.SupplierNo = 5;
+            TestItem.SupplierName = "Apple";
+            TestItem.ProductName = "iMac";
+            TestItem.ProductPrice = 1500;
+            TestItem.DateAvailable = DateTime.Now.Date;
+            TestItem.IsAvailable = true;
+            //Add the item to the list.
+            TestList.Add(TestItem);
+            //Assign to the property.
+            AllSuppliers.SupplierList = TestList;
+            //Test to see if the values match.
+            Assert.AreEqual(AllSuppliers.SupplierList.Count, TestList.Count);
         }
     }
 }
