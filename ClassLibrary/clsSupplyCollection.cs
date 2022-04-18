@@ -34,7 +34,20 @@ namespace ClassLibrary
                 mSupplierList = value;
             }
         }
-        public clsSupply ThisSupplier { get; set; }
+        //Private data member ThisSupplier.
+        clsSupply mThisSupplier = new clsSupply();
+        public clsSupply ThisSupplier { 
+            get
+            {
+                //Return the private data.
+                return mThisSupplier;
+            } 
+            set
+            {
+                //Set the private data.
+                mThisSupplier = value;
+            } 
+        }
         //Constructor for the class.
         public clsSupplyCollection()
         {
@@ -66,6 +79,21 @@ namespace ClassLibrary
                 Index++;
             }
 
+        }
+
+        public int Add()
+        {
+            //Add a new record to the Supplier table.
+            //Connect to the database.
+            clsDataConnection DB = new clsDataConnection();
+            //Set the parameters.
+            DB.AddParameter("@SupplierName", mThisSupplier.SupplierName);
+            DB.AddParameter("@ProductName", mThisSupplier.ProductName);
+            DB.AddParameter("@ProductPrice", mThisSupplier.ProductPrice);
+            DB.AddParameter("@DateAvailable", mThisSupplier.DateAvailable);
+            DB.AddParameter("@IsAvailable", mThisSupplier.IsAvailable);
+            //Execute the procedure, returning the result.
+            return DB.Execute("sproc_tblSupplier_Insert");
         }
     }
 }
