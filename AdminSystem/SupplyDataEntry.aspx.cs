@@ -43,10 +43,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             Supplier.ProductPrice = Convert.ToInt32(ProductPrice);
             //Capture the date available.
             Supplier.DateAvailable = Convert.ToDateTime(DateAvailable);
-            //Store the data in the session object.
-            Session["Supplier"] = Supplier;
-            //Navigate to the viewer page.
-            Response.Redirect("SupplyViewer.aspx");
+            //Create an instance of the supply collection class.
+            clsSupplyCollection SupplyList = new clsSupplyCollection();
+            //Set the ThisSupplier property.
+            SupplyList.ThisSupplier = Supplier;
+            //Add the record.
+            SupplyList.Add();
+            //Navigate to the list page.
+            Response.Redirect("SupplyList.aspx");
         }
         else
         {

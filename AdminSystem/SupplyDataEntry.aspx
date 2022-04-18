@@ -22,7 +22,7 @@
         <asp:Label ID="lblProductPrice" runat="server" Text="Product Price" width="119px"></asp:Label>
         <asp:TextBox ID="txtProductPrice" runat="server"></asp:TextBox>
         <p>
-            <asp:Label ID="lblDateAvailable" runat="server" Text="Date Avaiable" width="119px"></asp:Label>
+            <asp:Label ID="lblDateAvailable" runat="server" Text="Date Available" width="119px"></asp:Label>
             <asp:TextBox ID="txtDateAvailable" runat="server"></asp:TextBox>
         </p>
         <asp:CheckBox ID="chkIsAvaiable" runat="server" Text="Is Available" />
