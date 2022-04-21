@@ -37,30 +37,54 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsOrder
-        clsOrder AOrder = new clsOrder();
-
-        //capture the Order Number
-        AOrder.OrderNumber = Convert.ToInt32(txtOrderNumber.Text);
-
+        clsOrder AnOrder = new clsOrder();
         //capture the Tracking Number
-        AOrder.TrackingNumber = Convert.ToInt32(txtTrackingNumber.Text);
-
+        string TrackingNumber = txtTrackingNumber.Text;
         //capture the Product Name
-        AOrder.ProductName = txtProductName.Text;
-
+        string ProductName = txtProductName.Text;
         //capture the Price
-        AOrder.Price = Convert.ToInt32(txtPrice.Text);
-
+        string Price = txtPrice.Text;
         //capture the Customer Name
-        AOrder.CustomerName = txtCustomerName.Text;
+        string CustomerName = txtCustomerName.Text;
+        //capture the Date Added
+        string DateAdded = txtDateAdded.Text;
+        //variable to store any error messages
+        string Error = "";
+        //validate the data
+        Error = AnOrder.Valid(TrackingNumber, ProductName, Price, CustomerName, DateAdded);
+        if (Error == "")
+        {
+            //create a new instance of clsOrder
+            clsOrder AOrder = new clsOrder();
 
-        //capture the Confirm Order
-        AOrder.ConfirmOrder = Convert.ToBoolean(chkConfirmOrder.Checked);
+            //capture the Order Number
+            AOrder.OrderNumber = Convert.ToInt32(txtOrderNumber.Text);
 
-        //capture the Order Date
-        AOrder.DateAdded = Convert.ToDateTime(txtDateAdded.Text);
+            //capture the Tracking Number
+            AOrder.TrackingNumber = Convert.ToInt32(txtTrackingNumber.Text);
 
-        //navigate to the viewer page
-        Response.Redirect("OrderViewer.aspx");
+            //capture the Product Name
+            AOrder.ProductName = txtProductName.Text;
+
+            //capture the Price
+            AOrder.Price = Convert.ToInt32(txtPrice.Text);
+
+            //capture the Customer Name
+            AOrder.CustomerName = txtCustomerName.Text;
+
+            //capture the Confirm Order
+            AOrder.ConfirmOrder = Convert.ToBoolean(chkConfirmOrder.Checked);
+
+            //capture the Order Date
+            AOrder.DateAdded = Convert.ToDateTime(txtDateAdded.Text);
+
+            //navigate to the viewer page
+            Response.Write("OrderViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 }

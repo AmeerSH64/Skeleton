@@ -30,7 +30,7 @@
         <asp:CheckBox ID="chkConfirmOrder" runat="server" Text="Confirm Order" />
         <br />
         <br />
-        [<asp:Label runat="server" Text="lblError"></asp:Label>
+        [<asp:Label runat="server" Text="lblError" ID="lblError"></asp:Label>
         ]<br />
         <br />
         <asp:Button ID="btnOK" runat="server" Height="25px" OnClick="btnOK_Click" Text="OK" />
