@@ -8,9 +8,36 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //Variable for primary key with page level scope.
+    Int32 SupplierNo;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //Get the number of suppliers to be processed.
+        SupplierNo = Convert.ToInt32(Session["SupplierNo"]);
+        if (IsPostBack == false)
+        {
+            //If this is not a new record.
+            if (SupplierNo != -1)
+            {
+                //Display the current data in the record.
+                DisplaySupplier();
+            }
+        }
+    }
 
+    void DisplaySupplier()
+    {
+        //Create an instance of the supplier book.
+        clsSupplyCollection SupplierBook = new clsSupplyCollection();
+        //Find the record.
+        SupplierBook.ThisSupplier.Find(SupplierNo);
+        //Display the data for this record.
+        txtSupplierNo.Text = SupplierBook.ThisSupplier.SupplierNo.ToString();
+        txtSupplierName.Text = SupplierBook.ThisSupplier.SupplierName;
+        txtProductName.Text = SupplierBook.ThisSupplier.ProductName;
+        txtProductPrice.Text = SupplierBook.ThisSupplier.ProductPrice.ToString();
+        txtDateAvailable.Text = SupplierBook.ThisSupplier.DateAvailable.ToString();
+        chkIsAvaiable.Checked = SupplierBook.ThisSupplier.IsAvailable;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -43,12 +70,28 @@ public partial class _1_DataEntry : System.Web.UI.Page
             Supplier.ProductPrice = Convert.ToInt32(ProductPrice);
             //Capture the date available.
             Supplier.DateAvailable = Convert.ToDateTime(DateAvailable);
+            //Capture the availablity.
+            Supplier.IsAvailable = chkIsAvaiable.Checked;
             //Create an instance of the supply collection class.
             clsSupplyCollection SupplyList = new clsSupplyCollection();
-            //Set the ThisSupplier property.
-            SupplyList.ThisSupplier = Supplier;
-            //Add the record.
-            SupplyList.Add();
+            //If the record is new, then add the data.
+            if (Convert.ToInt32(SupplierNo) == -1)
+            {
+                //Set the ThisSupplier property.
+                SupplyList.ThisSupplier = Supplier;
+                //Add the record.
+                SupplyList.Add();
+            }
+            //Otherwise, it must be an update.
+            else
+            {
+                //Find the record to update.
+                SupplyList.ThisSupplier.Find(Convert.ToInt32(SupplierNo));
+                //Set the thisSupplier property.
+                SupplyList.ThisSupplier = Supplier;
+                //Update the record.
+                SupplyList.Update();
+            }
             //Navigate to the list page.
             Response.Redirect("SupplyList.aspx");
         }

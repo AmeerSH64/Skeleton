@@ -39,4 +39,24 @@ public partial class _1_List : System.Web.UI.Page
         //Redirect to the data intry page.
         Response.Redirect("SupplyDataEntry.aspx");
     }
+
+    protected void brnEdit_Click(object sender, EventArgs e)
+    {
+        //Variable to store the primary key for the record being edited.
+        Int32 SupplierNo;
+        //If a record has been selected from the list.
+        if (lstSupplierList.SelectedIndex != -1)
+        {
+            //Get the primary key value of the record to edit.
+            SupplierNo = Convert.ToInt32(lstSupplierList.SelectedValue);
+            //Store the data in a session object.
+            Session["SupplierNo"] = SupplierNo;
+            //Redirect to the edit page.
+            Response.Redirect("SupplyDataEntry.aspx");
+        }
+        else //if no record has been selected.
+        {
+            lblError.Text = "Please select a record from the list.";
+        }
+    }
 }
