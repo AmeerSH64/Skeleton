@@ -151,5 +151,37 @@ namespace Testing3
             //Test to see if the values match.
             Assert.AreEqual(AllSuppliers.ThisSupplier, TestItem);
         }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //Create an instance of the Supplier collection class.
+            clsSupplyCollection AllSuppliers = new clsSupplyCollection();
+            //Create test data.
+            clsSupply TestItem = new clsSupply();
+            //Variable to store the primary key.
+            Int32 PrimaryKey = 0;
+            //Set its properties.
+            TestItem.SupplierNo = 6;
+            TestItem.SupplierName = "Samsung";
+            TestItem.ProductName = "Galaxy Book";
+            TestItem.ProductPrice = 600;
+            TestItem.DateAvailable = DateTime.Now.Date;
+            TestItem.IsAvailable = true;
+            //Set ThisSupplier to the test data.
+            AllSuppliers.ThisSupplier = TestItem;
+            //Add the record.
+            PrimaryKey = AllSuppliers.Add();
+            //Set the primary key of the test data.
+            TestItem.SupplierNo = PrimaryKey;
+            //Find the record.
+            AllSuppliers.ThisSupplier.Find(PrimaryKey);
+            //Delete the record.
+            AllSuppliers.Delete();
+            //Now find the record.
+            Boolean Found = AllSuppliers.ThisSupplier.Find(PrimaryKey);
+            //Test to see if the record was found.
+            Assert.IsFalse(Found);
+        }
     }
 }

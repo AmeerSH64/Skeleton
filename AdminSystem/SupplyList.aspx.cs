@@ -59,4 +59,24 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record from the list.";
         }
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //Variable to store the primary key of the record.
+        Int32 SupplierNo;
+        //If a record has been selected.
+        if (lstSupplierList.SelectedIndex != 1)
+        {
+            //Get the primary key value.
+            SupplierNo = Convert.ToInt32(lstSupplierList.SelectedValue);
+            //Store in a session object.
+            Session["SupplierNo"] = SupplierNo;
+            //Redirect to delete page.
+            Response.Redirect("SupplyConfirmDelete.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record to delete.";
+        }
+    }
 }

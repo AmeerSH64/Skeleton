@@ -111,5 +111,16 @@ namespace ClassLibrary
             //Execute the procedure.
             DB.Execute("sproc_tblSupplier_Update");
         }
+
+        public void Delete()
+        {
+            //Deletes a record from tblSupplier.
+            //Connect to the database.
+            clsDataConnection DB = new clsDataConnection();
+            //Set the parameters for the stored procedure.
+            DB.AddParameter("@SupplierNo", mThisSupplier.SupplierNo);
+            //Execute the procedure.
+            DB.Execute("sproc_tblSupplier_Delete");
+        }
     }
 }
