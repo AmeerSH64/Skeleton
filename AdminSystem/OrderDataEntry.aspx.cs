@@ -57,29 +57,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //create a new instance of clsOrder
             clsOrder AOrder = new clsOrder();
 
-            //capture the Order Number
-            AOrder.OrderNumber = Convert.ToInt32(txtOrderNumber.Text);
-
             //capture the Tracking Number
-            AOrder.TrackingNumber = Convert.ToInt32(txtTrackingNumber.Text);
+            AOrder.TrackingNumber = Convert.ToInt32(TrackingNumber);
 
             //capture the Product Name
-            AOrder.ProductName = txtProductName.Text;
+            AOrder.ProductName = ProductName;
 
             //capture the Price
-            AOrder.Price = Convert.ToInt32(txtPrice.Text);
+            AOrder.Price = Convert.ToInt32(Price);
 
             //capture the Customer Name
-            AOrder.CustomerName = txtCustomerName.Text;
+            AOrder.CustomerName = CustomerName;
 
             //capture the Confirm Order
-            AOrder.ConfirmOrder = Convert.ToBoolean(chkConfirmOrder.Checked);
+            AOrder.ConfirmOrder = chkConfirmOrder.Checked;
 
             //capture the Order Date
-            AOrder.DateAdded = Convert.ToDateTime(txtDateAdded.Text);
+            AOrder.DateAdded = Convert.ToDateTime(DateAdded);
 
-            //navigate to the viewer page
-            Response.Write("OrderViewer.aspx");
+            //create a new instance of the address collection
+            clsOrderCollection OrderList = new clsOrderCollection();
+
+            //set the ThisOrder porperty
+            OrderList.ThisOrder = AnOrder;
+
+            //add the new record
+            OrderList.Add();
+
+            //redirect back to the listpage
+            Response.Redirect("OrderList.aspx");
         }
         else
         {
