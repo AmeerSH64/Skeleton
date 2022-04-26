@@ -17,6 +17,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsCustomer
         clsCustomer ACustomer = new clsCustomer();
+        //capture the customer no
+        string CustomerNo = txtCustomerNo.Text;
 
         //capture the customer name
         string CustomerName = txtCustomerName.Text;
@@ -27,15 +29,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //caption address
         string Address = txtCustomerAddress.Text;
 
+        //capture TotalPrice
+        string TotalPrice = txtCustomerTotalPrice.Text;
+
         //variable to store any error messages
-        string Error = "";
+        string Error="";
         //validate the data
         Error = ACustomer.Valid(CustomerName, DataOfBirth, Address);
         if (Error == "")
         {
 
-            //capture the customer no.
-            ACustomer.CustomerName = txtCustomerName.Text;
+            //capture the customer name.
+            ACustomer.CustomerName = CustomerName;
 
             //caption the date of birth
             ACustomer.DateOfBirth = Convert.ToDateTime(lblDateOfBirth);
@@ -43,8 +48,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //capture the address
             ACustomer.Address = Address;
 
-            //store the customer in the session object
-            Session["ACustomer"] = ACustomer;
+            //capture Over18
+            ACustomer.Over18 = chkOver18.Checked;
+
+            //create a new instance of the address collection
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            //sett the ThisCustomer property
+            CustomerList.ThisCustomer = ACustomer;
+            //add the new record
+            CustomerList.Add();
+
+            
             //redirect to the viewer page
             Response.Write("CustomerViewer.aspx");
 

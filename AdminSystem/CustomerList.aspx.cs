@@ -10,7 +10,7 @@ public partial class _1_List : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if this is the forst time the page is displayed
+        //if this is the first time the page is displayed
         if (IsPostBack == false)
         {
             //update the list box
@@ -31,5 +31,13 @@ public partial class _1_List : System.Web.UI.Page
         lstCustomerList.DataTextField = "Address";
         //bind the data to the list
         lstCustomerList.DataBind();
+    }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        //store -1 into the session object to indicate this is a new record
+        Session["CustomerNo"] = -1;
+        //redirect to the data entry page
+        Response.Redirect("CustomerBookDataEntry.aspx");
     }
 }
