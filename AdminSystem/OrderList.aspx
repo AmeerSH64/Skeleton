@@ -12,6 +12,15 @@
             <asp:ListBox ID="lstOrderList" runat="server" Height="267px" Width="335px"></asp:ListBox>
         </div>
         <asp:Button ID="bntAdd" runat="server" OnClick="bntAdd_Click" Text="Add" />
+        <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />
+        <asp:Button ID="btnDelete" runat="server" Height="26px" OnClick="btnDelete_Click" Text="Delete" />
+        <br />
+        Enter a Product Name<asp:TextBox ID="txtFilter" runat="server"></asp:TextBox>
+        <br />
+        <asp:Button ID="btnApply" runat="server" OnClick="btnApply_Click" Text="Apply" />
+        <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" Text="Clear" />
+        <br />
+        <asp:Label ID="lblError" runat="server" Text="[lblError]"></asp:Label>
     </form>
 </body>
 </html>
