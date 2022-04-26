@@ -96,6 +96,37 @@ namespace Testing2
 
         }
 
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create the item of the test data
+            clsCustomer TestItem = new clsCustomer();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.Over18 = true;
+            TestItem.CustomerNo = 6;
+            TestItem.CustomerName = "Test Customer Name";
+            TestItem.DateOfBirth = DateTime.Now.Date;
+            TestItem.Address = "Test Address";
+            TestItem.TotalPrice = 100;
+            //set thisCusotmer to the test data
+            AllCustomers.ThisCustomer = TestItem;
+            //add the record
+            PrimaryKey = AllCustomers.Add();
+            //set the primary key of the test data
+            TestItem.CustomerNo = PrimaryKey;
+            //find the record
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            //test to see the two values are the same
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+
+
+
+        }
         
     }  
     
