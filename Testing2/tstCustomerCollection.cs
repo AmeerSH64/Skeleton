@@ -75,7 +75,8 @@ namespace Testing2
             //Create an instance of the class we want to create
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
             //creste some test data to assign to the property
-            //in this case the data needs to be a list of objects
+            //in this case the data needs to be a lis
+            //t of objects
             List<clsCustomer> TestList = new List<clsCustomer>();
             //add an item to the  list
             //create the item of the test data
@@ -119,6 +120,37 @@ namespace Testing2
             PrimaryKey = AllCustomers.Add();
             //set the primary key of the test data
             TestItem.CustomerNo = PrimaryKey;
+            //find the record
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            //test to see ThisCustomer matches the test dat
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+
+
+
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create the item of the test data
+            clsCustomer TestItem = new clsCustomer();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.Over18 = true;
+            TestItem.CustomerNo = 6;
+            TestItem.CustomerName = "Test Customer Name";
+            TestItem.DateOfBirth = DateTime.Now.Date;
+            TestItem.Address = "Test Address";
+            TestItem.TotalPrice = 100;
+            //set thisCusotmer to the test data
+            AllCustomers.ThisCustomer = TestItem;
+            //add the record
+            PrimaryKey = AllCustomers.Add();
+            //set the primary key of the test data
+            TestItem.CustomerNo = PrimaryKey;
             //modify the test data
             TestItem.Over18 = false;
             TestItem.CustomerNo = 3;
@@ -132,10 +164,8 @@ namespace Testing2
             AllCustomers.Update();
             //find the record
             AllCustomers.ThisCustomer.Find(PrimaryKey);
-            //test to see ThisCustomer matches the test dat
+            //test to see ThisCustomer matches the test data
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
-
-
 
         }
         
