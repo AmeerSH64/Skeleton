@@ -37,7 +37,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //validate the data
         Error = ACustomer.Valid(CustomerName, DataOfBirth, Address);
         if (Error == "")
-        {
+        { 
+            //capture the customer no
+            ACustomer.CustomerNo = CustomerNo;
 
             //capture the customer name.
             ACustomer.CustomerName = CustomerName;
@@ -48,15 +50,36 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //capture the address
             ACustomer.Address = Address;
 
+            //capture totavlprice
+            ACustomer.TotalPrice = TotalPrice;
+
             //capture Over18
             ACustomer.Over18 = chkOver18.Checked;
 
             //create a new instance of the address collection
             clsCustomerCollection CustomerList = new clsCustomerCollection();
-            //sett the ThisCustomer property
-            CustomerList.ThisCustomer = ACustomer;
-            //add the new record
-            CustomerList.Add();
+            
+            //if this is a new record i.e CustomerNo = -1 then add the data
+            if (CustomerNo == 1)
+            {
+                //sett the ThisCustomer property
+                CustomerList.ThisCustomer = ACustomer;
+                //add the new record
+                CustomerList.Add();
+
+            }
+            else 
+            {
+                //find he record to update
+                CustomerList.ThisCustomer.Find(CustomerNo);
+                //set the thisCUSTOMER Property
+                CustomerList.ThisCustomer = ACustomer;
+                //update the record
+                CustomerList.Update();
+
+
+            }
+            
 
             
             //redirect to the viewer page
