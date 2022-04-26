@@ -119,9 +119,20 @@ namespace Testing2
             PrimaryKey = AllCustomers.Add();
             //set the primary key of the test data
             TestItem.CustomerNo = PrimaryKey;
+            //modify the test data
+            TestItem.Over18 = false;
+            TestItem.CustomerNo = 3;
+            TestItem.CustomerName = "Test Customer Name two";
+            TestItem.DateOfBirth = DateTime.Now.Date;
+            TestItem.Address = "Test Address two";
+            TestItem.TotalPrice = 200;
+            //set the record based on the new test data
+            AllCustomers.ThisCustomer = TestItem;
+            //Update the record
+            AllCustomers.Update();
             //find the record
             AllCustomers.ThisCustomer.Find(PrimaryKey);
-            //test to see the two values are the same
+            //test to see ThisCustomer matches the test dat
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
 
 
