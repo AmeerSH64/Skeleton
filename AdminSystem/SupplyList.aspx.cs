@@ -22,7 +22,7 @@ public partial class _1_List : System.Web.UI.Page
     {
         //Create an instance of the Supplier collection.
         clsSupplyCollection AllSuppliers = new clsSupplyCollection();
-        //Set the data source to list of addresses in the collection.
+        //Set the data source to a list of suppliers in the collection.
         lstSupplierList.DataSource = AllSuppliers.SupplierList;
         //Set the name of the primary key.
         lstSupplierList.DataValueField = "SupplierNo";
@@ -78,5 +78,35 @@ public partial class _1_List : System.Web.UI.Page
         {
             lblError.Text = "Please select a record to delete.";
         }
+    }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        //Create an instance of the Supplier collection.
+        clsSupplyCollection AllSuppliers = new clsSupplyCollection();
+        AllSuppliers.ReportBySupplierName(txtEnterSupplierName.Text);
+        lstSupplierList.DataSource = AllSuppliers.SupplierList;
+        //Set the name of the primary key.
+        lstSupplierList.DataValueField = "SupplierNo";
+        //Set the data field to display.
+        lstSupplierList.DataTextField = "SupplierName";
+        //Bind the data to the list.
+        lstSupplierList.DataBind();
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        //Create an instance of the Supplier collection.
+        clsSupplyCollection AllSuppliers = new clsSupplyCollection();
+        AllSuppliers.ReportBySupplierName("");
+        //Clear any existing filter to tidy the interface.
+        txtEnterSupplierName.Text = "";
+        lstSupplierList.DataSource = AllSuppliers.SupplierList;
+        //Set the name of the primary key.
+        lstSupplierList.DataValueField = "SupplierNo";
+        //Set the data field to display.
+        lstSupplierList.DataTextField = "SupplierName";
+        //Bind the data to the list.
+        lstSupplierList.DataBind();
     }
 }

@@ -183,5 +183,48 @@ namespace Testing3
             //Test to see if the record was found.
             Assert.IsFalse(Found);
         }
+
+        [TestMethod]
+        public void ReportBySupplierNameMethodOK()
+        {
+            //Create an instance of the Supplier collection class.
+            clsSupplyCollection AllSuppliers = new clsSupplyCollection();
+            //Create an instance of a filtered Supplier collection class.
+            clsSupplyCollection FilteredSuppliers = new clsSupplyCollection();
+            //Apply a blank string which will return all records.
+            FilteredSuppliers.ReportBySupplierName("");
+            //Test to see if the values match.
+            Assert.AreEqual(AllSuppliers.Count, FilteredSuppliers.Count);
+        }
+
+        [TestMethod]
+        public void ReportBySupplierNameDataFound()
+        {
+            //Create an instance of a filtered Supplier collection class.
+            clsSupplyCollection FilteredSuppliers = new clsSupplyCollection();
+            //Boolean to store the outcome.
+            Boolean OK = true;
+            //Apply a supplier name that doesn't exist.
+            FilteredSuppliers.ReportBySupplierName("Supplier name");
+            //Check that the correct number of records is found.
+            if (FilteredSuppliers.Count == 2)
+            {
+                //Check that the first record is 1.
+                if (FilteredSuppliers.SupplierList[0].SupplierNo != 1)
+                {
+                    OK = false;
+                }
+                else if (FilteredSuppliers.SupplierList[1].SupplierNo != 2)
+                {
+                    OK = false;
+                }
+                else
+                {
+                    OK = false;
+                }
+            }
+            //Test to see if the result is true.
+            Assert.IsTrue(OK);
+        }
     }
 }

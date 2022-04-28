@@ -10,19 +10,10 @@ public partial class _1_List : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //get the number of the address to be processed
-        CustomerNo = Convert.ToInt32(Session["CustomerNo"]);
-        //if this is the first time the page is displayed
         if (IsPostBack == false)
         {
-            //if this is not a new record
-            if (CustomerNo != -1)
-            {
-                //update the list box
-                DisplayCustomers();
-
-            }
-            
+            //update the list box
+            DisplayCustomer();
         }
 
     }
@@ -31,15 +22,14 @@ public partial class _1_List : System.Web.UI.Page
     {
         //create an instance of the Customer book
         clsCustomerCollection CustomerBook = new clsCustomerCollection();
-        //find the record to update
-        CustomerBook.ThisCustomer.Find(CustomerNo);
-        //display the data for this record
-        txtCustomerNo.Text = CustomerBook.ThisCustomer.CustomerNo;
-        txtCustomerName.Text = CustomerBook.ThisCustomer.CustomerName.ToString();
-        txtAddress.Text = CustomerBook.ThisCustomer.Address.ToString();
-        txtDateOfBirth.Text = CustomerBook.ThisCustomer.DateOfBirth.ToString();
-        txtTotalPrice.Text = CustomerBook.ThisCustomer.TotalPrice();
-        txtOver18.Text = CustomerBook.ThisCustomer.Over18;
+        //Set the data source to a list of customers in the collection.
+        lstCustomerList.DataSource = CustomerBook.CustomerList;
+        //Set the name of the primary key.
+        lstCustomerList.DataValueField = "CustomerNo";
+        //Set the data field to display.
+        lstCustomerList.DataTextField = "CustomerName";
+        //Bind the data to the list.
+        lstCustomerList.DataBind();
 
     }
 
