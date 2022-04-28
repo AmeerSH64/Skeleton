@@ -59,9 +59,22 @@ namespace ClassLibrary
             clsDataConnection DB = new clsDataConnection();
             //Execte the stored procedure.
             DB.Execute("sproc_tblSupplier_SelectAll");
-            //Get the record count.
+            //Populate the array list with data table records.
+            PopulateArray(DB);
+
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //Populates the array list based on the data table from DB.
+            //Variable for the index.
+            Int32 Index = 0;
+            //Variable to store the record count.
+            Int32 RecordCount;
             RecordCount = DB.Count;
-            //While there are records to process.
+            //Clear the private array list.
+            mSupplierList = new List<clsSupply>();
+            //While there are records to process
             while (Index < RecordCount)
             {
                 //Create a blank supplier.
@@ -78,7 +91,6 @@ namespace ClassLibrary
                 //Point at the next record.
                 Index++;
             }
-
         }
 
         public int Add()
@@ -121,6 +133,19 @@ namespace ClassLibrary
             DB.AddParameter("@SupplierNo", mThisSupplier.SupplierNo);
             //Execute the procedure.
             DB.Execute("sproc_tblSupplier_Delete");
+        }
+
+        public void ReportBySupplierName(string SupplierName)
+        {
+            //Filters the records based on a supplier name.
+            //Connect to the database.
+            clsDataConnection DB = new clsDataConnection();
+            //Set the parameters for the stored procedure.
+            DB.AddParameter("@SupplierName", SupplierName);
+            //Execute the procedure.
+            DB.Execute("sproc_tblSupplier_FilterBySupplierName");
+            //Populate the array list with the data  table.
+            PopulateArray(DB);
         }
     }
 }

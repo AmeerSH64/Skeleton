@@ -39,7 +39,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         { 
             //capture the customer no
-            ACustomer.CustomerNo = CustomerNo;
+            ACustomer.CustomerNo = Convert.ToInt32(CustomerNo);
 
             //capture the customer name.
             ACustomer.CustomerName = CustomerName;
@@ -51,7 +51,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             ACustomer.Address = Address;
 
             //capture totavlprice
-            ACustomer.TotalPrice = TotalPrice;
+            ACustomer.TotalPrice = Convert.ToInt32(TotalPrice);
 
             //capture Over18
             ACustomer.Over18 = chkOver18.Checked;
@@ -60,7 +60,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             clsCustomerCollection CustomerList = new clsCustomerCollection();
             
             //if this is a new record i.e CustomerNo = -1 then add the data
-            if (CustomerNo == 1)
+            if (Convert.ToInt32(CustomerNo) == 1)
             {
                 //sett the ThisCustomer property
                 CustomerList.ThisCustomer = ACustomer;
@@ -71,7 +71,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             else 
             {
                 //find he record to update
-                CustomerList.ThisCustomer.Find(CustomerNo);
+                CustomerList.ThisCustomer.Find(Convert.ToInt32(CustomerNo));
                 //set the thisCUSTOMER Property
                 CustomerList.ThisCustomer = ACustomer;
                 //update the record
