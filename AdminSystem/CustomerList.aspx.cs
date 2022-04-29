@@ -21,13 +21,13 @@ public partial class _1_List : System.Web.UI.Page
     void DisplayCustomer()
     {
         //create an instance of the Customer book
-        clsCustomerCollection CustomerBook = new clsCustomerCollection();
+        clsCustomerCollection Customers = new clsCustomerCollection();
         //Set the data source to a list of customers in the collection.
-        lstCustomerList.DataSource = CustomerBook.CustomerList;
+        lstCustomerList.DataSource = Customers.CustomerList;
         //Set the name of the primary key.
-        lstCustomerList.DataValueField = "CustomerNo";
+        lstCustomerList.DataValueField = "CustomerName";
         //Set the data field to display.
-        lstCustomerList.DataTextField = "CustomerName";
+        lstCustomerList.DataTextField = "CustomerNo";
         //Bind the data to the list.
         lstCustomerList.DataBind();
 
@@ -59,6 +59,28 @@ public partial class _1_List : System.Web.UI.Page
         else//if no record has been selected
         {
             lblError.Text = "Please select a ecord to edit from the list";
+        }
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //var to store the primary key value of the record to be edited
+        Int32 CustomerNo;
+        //if a record has been selected from the list
+        if (lstCustomerList.SelectedIndex != -1)
+        {
+            //get the primary key value to the record to edit
+            CustomerNo = Convert.ToInt32(lstCustomerList.SelectedValue);
+            //store the data in the session object
+            Session["CustomerNo"] = CustomerNo;
+            //redirect to the delete page
+            Response.Redirect("CustomerConfirmDelete.aspxx");
+
+        }
+        else//if no record has been selected
+        {
+            lblError.Text = "Please select a record to delete from the list";
+
         }
     }
 }
