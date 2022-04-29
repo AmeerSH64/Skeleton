@@ -8,8 +8,37 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 CustomerNo;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of the customer to be processed 
+        CustomerNo = Convert.ToInt32(Session["CustomerNo"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if(CustomerNo != -1)
+            {
+                //display the current data for the record
+                DisplayCustomer();
+            }
+        }
+    }
+
+    void DisplayCustomer()
+    {
+        //create an instance of the customer book
+        clsCustomerCollection CustomerBook = new clsCustomerCollection();
+        //find the record to update
+        CustomerBook.ThisCustomer.Find(CustomerNo);
+        //display the data for this record
+        txtCustomerNo.Text = CustomerBook.ThisCustomer.CustomerNo.ToString();
+        txtCustomerName.Text = CustomerBook.ThisCustomer.CustomerName;
+        txtCustomerAddress.Text = CustomerBook.ThisCustomer.Address;
+        txtDateOfBirth.Text = CustomerBook.ThisCustomer.DateOfBirth.ToString();
+        txtCustomerTotalPrice.Text = CustomerBook.ThisCustomer.TotalPrice.ToString();
+        chkOver18.Checked = CustomerBook.ThisCustomer.Over18;
+
 
     }
 
@@ -60,7 +89,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             clsCustomerCollection CustomerList = new clsCustomerCollection();
             
             //if this is a new record i.e CustomerNo = -1 then add the data
-            if (Convert.ToInt32(CustomerNo) == 1)
+            if (Convert.ToInt32(CustomerNo) == -1)
             {
                 //sett the ThisCustomer property
                 CustomerList.ThisCustomer = ACustomer;
@@ -83,7 +112,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             
             //redirect to the viewer page
-            Response.Write("CustomerViewer.aspx");
+            Response.Write("CustomerList.aspx");
 
         }
         else

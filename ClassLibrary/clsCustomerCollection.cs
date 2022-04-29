@@ -93,7 +93,6 @@ namespace ClassLibrary
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //set the parameters for the store procedure
-            DB.AddParameter("@CustomerNo", mThisCustomer.CustomerNo);
             DB.AddParameter("@CustomerName", mThisCustomer.CustomerName);
             DB.AddParameter("@Address", mThisCustomer.Address);
             DB.AddParameter("@DateOfBirth", mThisCustomer.DateOfBirth);
@@ -110,7 +109,7 @@ namespace ClassLibrary
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //set the parameters for the stored procedure
-            DB.AddParameter("@Customer", mThisCustomer.CustomerNo);
+            DB.AddParameter("@CustomerNo", mThisCustomer.CustomerNo);
             DB.AddParameter("@CustomerName", mThisCustomer.CustomerName);
             DB.AddParameter("@Address", mThisCustomer.Address);
             DB.AddParameter("@DateOfBirth", mThisCustomer.DateOfBirth);
@@ -119,6 +118,17 @@ namespace ClassLibrary
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_Update");
 
+        }
+
+        public void Delete()
+        {
+            //delete the record pointed to by thiscustomer
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@CustomerNo", mThisCustomer.CustomerNo);
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_Delete");
         }
     }
 }
