@@ -130,5 +130,21 @@ namespace ClassLibrary
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_Delete");
         }
+
+        public void ReportByAddress(string Address)
+        {
+            //filters the records based on a full or partial address
+            //connect to the database 
+            clsDataConnection DB = new clsDataConnection();
+            //send the post code parameter to the database
+            DB.AddParameter("@Address", Address);
+            //execute the store procedure
+            DB.Execute("sproc_tblCustomer_FilterByAddress");
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+
+        }
     }
 }
