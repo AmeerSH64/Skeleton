@@ -16,33 +16,13 @@ namespace ClassLibrary
         //constructor for the class
         public clsCustomerCollection()
         {
-            //var for the index
-            Int32 Index = 0;
-            //var to store the record count
-            Int32 RecordCount = 0;
             //object for data connection
             clsDataConnection DB = new clsDataConnection();
             //execute the store procedure
             DB.Execute("sproc_tblCustomer_SelectAll");
-            //get the count of record
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                //create a blank address
-                clsCustomer ACustomer = new clsCustomer();
-                //read in the fields from the current record
-                ACustomer.Over18 = Convert.ToBoolean(DB.DataTable.Rows[Index]["Over18"]);
-                ACustomer.CustomerNo = Convert.ToInt32(DB.DataTable.Rows[Index]["customerNo"]);
-                ACustomer.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
-                ACustomer.DateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateOfBirth"]);
-                ACustomer.Address = Convert.ToString(DB.DataTable.Rows[Index]["Address"]);
-                ACustomer.TotalPrice = Convert.ToDecimal(DB.DataTable.Rows[Index]["TotalPrice"]);
-                //add the record to the private data member
-                mCustomerList.Add(ACustomer);
-                //point at the next record
-                Index++;
-            }
+            //populate the array list with the data table
+            PopulateArray(DB);
+            
         }
 
         public List<clsCustomer> CustomerList
@@ -140,10 +120,38 @@ namespace ClassLibrary
             DB.AddParameter("@Address", Address);
             //execute the store procedure
             DB.Execute("sproc_tblCustomer_FilterByAddress");
+            //populate the array list with data table
+            PopulateArray(DB);
         }
 
         void PopulateArray(clsDataConnection DB)
         {
+            //populates the array list on the data table in the parameter DB
+            //var for te index
+            Int32 Index = 0;
+            //var to store the record count
+            Int32 RecordCount;
+            //get the count f records
+            RecordCount = DB.Count;
+            //clear the private array list
+            mCustomerList = new List<clsCustomer>();
+            //while there are records to process
+            while (Index <RecordCount)
+            {
+                //create a blank Customer
+                clsCustomer ACustomer = new clsCustomer();
+                //read in the field fro the current record
+                ACustomer.Over18 = Convert.ToBoolean(DB.DataTable.Rows[Index]["Over18"]);
+                ACustomer.CustomerNo = Convert.ToInt32(DB.DataTable.Rows[Index]["customerNo"]);
+                ACustomer.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
+                ACustomer.DateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateOfBirth"]);
+                ACustomer.Address = Convert.ToString(DB.DataTable.Rows[Index]["Address"]);
+                ACustomer.TotalPrice = Convert.ToDecimal(DB.DataTable.Rows[Index]["TotalPrice"]);
+                //add the record to the private data member
+                mCustomerList.Add(ACustomer);
+                //point at the next record
+                Index++;
+            }
 
         }
     }
