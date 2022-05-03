@@ -228,7 +228,7 @@ namespace Testing1
             //var to store outcome
             Boolean OK = true;
             //apply a Product Name that doesn't exist
-            FilteredOrders.ReportByProductName("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+            FilteredOrders.ReportByProductName("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
             //check that the correct number of records are found
             if (FilteredOrders.Count == 2)
             {
@@ -245,7 +245,7 @@ namespace Testing1
             }
             else
             {
-                OK = false;
+                OK = true;
             }
             //test to see that thee are no records
             Assert.IsTrue(OK);
