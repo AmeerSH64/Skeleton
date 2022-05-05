@@ -46,8 +46,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsCustomer
         clsCustomer ACustomer = new clsCustomer();
-        //capture the customer no
-        string CustomerNo = txtCustomerNo.Text;
+        
 
         //capture the customer name
         string CustomerName = txtCustomerName.Text;
@@ -124,5 +123,30 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
         
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the customer class
+        clsCustomer ACustomer = new clsCustomer();
+        //variable to store the primary key
+        Int32 CustomerNo;
+        //variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        CustomerNo = Convert.ToInt32(txtCustomerNo.Text);
+        //find the record
+        Found = ACustomer.Find(CustomerNo);
+        //if found
+        if (Found == true)
+        {
+            //display the value of the properties in the form
+            txtCustomerName.Text = ACustomer.CustomerName;
+            txtCustomerAddress.Text = ACustomer.Address;
+            txtCustomerTotalPrice.Text = ACustomer.TotalPrice.ToString();
+            txtDateOfBirth.Text = ACustomer.DateOfBirth.ToString();
+
+
+        }
     }
 }
